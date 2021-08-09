@@ -49,11 +49,12 @@ Index.cshtml
 </div>
 ```
 
-## List available functionality
+## List of available functionality
 
-- ```DenevCloud.AspNetCore.Services.Azure.VirtualMachines.GetVirtualMachine(string VMName)``` | Returns a ```Microsoft.Azure.Management.Compute.Models.VirtualMachine``` model
-- ```DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces.GetListPublicIpv4(VirtualMachine virtualMachine, string NicName = null)``` | Returns a ```List<string>``` of IPv4s associated with the corresponding VM
-- ```DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces.GetListPublicIpv6(VirtualMachine virtualMachine, string NicName = null)``` | Returns a ```List<string>``` of IPv6s associated with the corresponding VM
+- ```VirtualMachines.GetVirtualMachine(string VMName)``` | Returns a ```Microsoft.Azure.Management.Compute.Models.VirtualMachine``` model
+- ```VirtualMachines.Start|Restart|Deallocate|PowerOffVirtualMachine```
+- ```VirtualMachines.NetworkInterfaces.GetListPublicIpv4|Ipv6(VirtualMachine virtualMachine, string NicName = null)``` | Returns a ```List<string>``` of public IPv4s or IPv6 associated with the corresponding VM
+- ```VirtualMachines.NetworkInterfaces.GetListPrivateIpv4|Ipv6(VirtualMachine virtualMachine, string NicName = null)``` | Returns a ```List<string>``` of private IPv4s or IPv6s associated with the corresponding VM
 
 Note: All of the above include Async functionality too
 
