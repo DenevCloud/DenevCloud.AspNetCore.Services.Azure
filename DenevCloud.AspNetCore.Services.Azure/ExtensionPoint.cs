@@ -9,7 +9,7 @@ namespace DenevCloud.AspNetCore.Services.Azure
 {
     public static class ExtensionPoint
     {
-        public static IServiceCollection AddDenevClouAzure(this IServiceCollection services, IConfiguration Configuration, bool UseDNS = false, bool UseKeyVault = false, bool UseVirtualMachines = false)
+        public static IServiceCollection AddDenevCloudAzure(this IServiceCollection services, IConfiguration Configuration, bool UseDNS = false, bool UseKeyVault = false, bool UseVirtualMachines = false)
         {
             services.AddOptions();
 
