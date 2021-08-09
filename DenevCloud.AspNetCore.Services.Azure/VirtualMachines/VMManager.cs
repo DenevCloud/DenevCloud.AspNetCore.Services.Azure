@@ -3,7 +3,6 @@ using Microsoft.Azure.Management.Compute.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.Rest;
-using Microsoft.Rest.Azure;
 using Microsoft.Rest.Azure.Authentication;
 using System;
 using System.Threading;
@@ -43,18 +42,6 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines
             }
         }
 
-        internal IPage<VirtualMachine> GetVMList()
-        {
-            CheckLogIn();
-            return virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.List(virtualMachinesOptions.VMResourceGroup);
-        }
-
-        internal async Task<IPage<VirtualMachine>> GetVMListAsync()
-        {
-            await CheckLogInAsync();
-            return virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.List(virtualMachinesOptions.VMResourceGroup);
-        }
-
         public VirtualMachine GetVirtualMachine(string VMName)
         {
             CheckLogIn();
@@ -73,5 +60,94 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines
             return await virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.GetAsync(virtualMachinesOptions.VMResourceGroup, VMName, InstanceViewTypes.InstanceView, token);
         }
 
+        public void StartVirtualMachine(string VMName)
+        {
+            CheckLogIn();
+            virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.Start(virtualMachinesOptions.VMResourceGroup, VMName);
+        }
+
+        public async Task StartVirtualMachineAsync(string VMName)
+        {
+            await CheckLogInAsync();
+            await virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.StartAsync(virtualMachinesOptions.VMResourceGroup, VMName);
+        }
+
+        public async Task StartVirtualMachineAsync(string VMName, CancellationToken token)
+        {
+            await CheckLogInAsync();
+            await virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.StartAsync(virtualMachinesOptions.VMResourceGroup, VMName, token);
+        }
+
+        public void RestartVirtualMachine(string VMName, bool skipShutdown = false)
+        {
+            CheckLogIn();
+            virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.Restart(virtualMachinesOptions.VMResourceGroup, VMName);
+        }
+
+        public async Task RestartVirtualMachineAsync(string VMName)
+        {
+            await CheckLogInAsync();
+            await virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.RestartAsync(virtualMachinesOptions.VMResourceGroup, VMName);
+        }
+
+        public async Task RestartVirtualMachineAsync(string VMName, CancellationToken token)
+        {
+            await CheckLogInAsync();
+            await virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.RestartAsync(virtualMachinesOptions.VMResourceGroup, VMName, token);
+        }
+
+        public void DeallocateVirtualMachine(string VMName)
+        {
+            CheckLogIn();
+            virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.Deallocate(virtualMachinesOptions.VMResourceGroup, VMName);
+        }
+
+        public async Task DeallocateVirtualMachineAsync(string VMName, CancellationToken token)
+        {
+            await CheckLogInAsync();
+            await virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.DeallocateAsync(virtualMachinesOptions.VMResourceGroup, VMName, token);
+        }
+
+        public async Task DeallocateVirtualMachineAsync(string VMName)
+        {
+            await CheckLogInAsync();
+            await virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.DeallocateAsync(virtualMachinesOptions.VMResourceGroup, VMName);
+        }
+
+        public void PowerOffVirtualMachine(string VMName, bool skipShutdown = false)
+        {
+            CheckLogIn();
+            virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.PowerOff(virtualMachinesOptions.VMResourceGroup, VMName, skipShutdown);
+        }
+
+        public async Task PowerOffVirtualMachineAsync(string VMName, bool skipShutdown = false)
+        {
+            await CheckLogInAsync();
+            await virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.PowerOffAsync(virtualMachinesOptions.VMResourceGroup, VMName, skipShutdown);
+        }
+
+        public async Task PowerOffVirtualMachineAsync(string VMName, CancellationToken token, bool skipShutdown = false)
+        {
+            await CheckLogInAsync();
+            await virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.PowerOffAsync(virtualMachinesOptions.VMResourceGroup, VMName, skipShutdown, token);
+        }
+
+        internal void GetListVirtualMachines()
+        {
+            CheckLogIn();
+            virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.List(virtualMachinesOptions.VMResourceGroup);
+        }
+
+        internal async Task GetListVirtualMachinesAsync()
+        {
+            await CheckLogInAsync();
+            await virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.ListAsync(virtualMachinesOptions.VMResourceGroup);
+        }
+
+        internal async Task GetListVirtualMachinesAsync(CancellationToken token)
+        {
+            await CheckLogInAsync();
+            await virtualMachinesOptions.computeManagementClient(ClientCredentials).VirtualMachines.ListAsync(virtualMachinesOptions.VMResourceGroup, token);
+        }
     }
 }

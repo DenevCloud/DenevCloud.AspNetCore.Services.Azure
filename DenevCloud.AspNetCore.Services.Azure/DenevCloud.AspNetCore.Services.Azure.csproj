@@ -8,7 +8,7 @@
     <Authors>Milen Denev</Authors>
     <Company>Denev Cloud</Company>
     <Description>
-      Easy and ready-to-go ASP.NET Core services for Azure
+      Easy to use and ready-to-go ASP.NET Core services for Azure
       Example - https://github.com/DenevCloud/DenevCloud.AspNetCore.Services.Azure/tree/master/DenevCloud.AspNetCore.Services.Azure.Examples
     </Description>
     <PackageLicenseFile>license.txt</PackageLicenseFile>

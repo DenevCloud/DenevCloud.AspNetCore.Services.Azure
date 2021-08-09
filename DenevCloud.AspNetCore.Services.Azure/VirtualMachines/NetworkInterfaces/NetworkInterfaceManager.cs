@@ -349,5 +349,293 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
 
             return Ips;
         }
+
+        public List<string> GetListPrivateIpv4(VirtualMachine virtualMachine, string NicName = null)
+        {
+            CheckLogIn();
+
+            List<string> Ips = new List<string>();
+            if (NicName == null)
+            {
+                var nicList = virtualMachine.NetworkProfile.NetworkInterfaces;
+
+                using (var client = new NetworkManagementClient(ClientCredentials))
+                {
+                    client.SubscriptionId = generalOptions.subscriptionId;
+                    var NiCList = client.NetworkInterfaces.ListAll();
+                    var allPublicIps = client.PublicIPAddresses.ListAll();
+                    foreach (var r_nic in nicList)
+                    {
+                        var networkIntefaceName = r_nic.Id.Split('/').Last();
+
+                        var nic = NiCList.FirstOrDefault(x => x.Name == networkIntefaceName);
+
+                        if (nic != null)
+                        {
+                            foreach (var ip in nic.IpConfigurations)
+                            {
+                                if (!string.IsNullOrEmpty(ip.PrivateIPAddress) && ip.PrivateIPAddressVersion == "IPv4")
+                                {
+                                    Ips.Add(ip.PrivateIPAddress);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception(message: $"Something went wrong. Network Interface with the a name of {networkIntefaceName} has not been found.");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                var nicList = virtualMachine.NetworkProfile.NetworkInterfaces.FirstOrDefault(n => n.Id == NicName);
+                using (var client = new NetworkManagementClient(ClientCredentials))
+                {
+                    client.SubscriptionId = generalOptions.subscriptionId;
+
+                    var NiCList = client.NetworkInterfaces.ListAll();
+                    var allPublicIps = client.PublicIPAddresses.ListAll();
+
+                    var networkIntefaceName = nicList.Id.Split('/').Last();
+
+                    var nic = NiCList.FirstOrDefault(x => x.Name == networkIntefaceName);
+
+                    if (nic != null)
+                    {
+                        foreach (var ip in nic.IpConfigurations)
+                        {
+                            if (!string.IsNullOrEmpty(ip.PrivateIPAddress) && ip.PrivateIPAddressVersion == "IPv4")
+                            {
+                                Ips.Add(ip.PrivateIPAddress);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception(message: $"Something went wrong. Network Interface with the a name of {networkIntefaceName} has not been found.");
+                    }
+                }
+            }
+
+            return Ips;
+        }
+
+        public List<string> GetListPrivateIpv6(VirtualMachine virtualMachine, string NicName = null)
+        {
+            CheckLogIn();
+
+            List<string> Ips = new List<string>();
+            if (NicName == null)
+            {
+                var nicList = virtualMachine.NetworkProfile.NetworkInterfaces;
+
+                using (var client = new NetworkManagementClient(ClientCredentials))
+                {
+                    client.SubscriptionId = generalOptions.subscriptionId;
+                    var NiCList = client.NetworkInterfaces.ListAll();
+                    var allPublicIps = client.PublicIPAddresses.ListAll();
+                    foreach (var r_nic in nicList)
+                    {
+                        var networkIntefaceName = r_nic.Id.Split('/').Last();
+
+                        var nic = NiCList.FirstOrDefault(x => x.Name == networkIntefaceName);
+
+                        if (nic != null)
+                        {
+                            foreach (var ip in nic.IpConfigurations)
+                            {
+                                if (!string.IsNullOrEmpty(ip.PrivateIPAddress) && ip.PrivateIPAddressVersion == "IPv6")
+                                {
+                                    Ips.Add(ip.PrivateIPAddress);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception(message: $"Something went wrong. Network Interface with the a name of {networkIntefaceName} has not been found.");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                var nicList = virtualMachine.NetworkProfile.NetworkInterfaces.FirstOrDefault(n => n.Id == NicName);
+                using (var client = new NetworkManagementClient(ClientCredentials))
+                {
+                    client.SubscriptionId = generalOptions.subscriptionId;
+
+                    var NiCList = client.NetworkInterfaces.ListAll();
+                    var allPublicIps = client.PublicIPAddresses.ListAll();
+
+                    var networkIntefaceName = nicList.Id.Split('/').Last();
+
+                    var nic = NiCList.FirstOrDefault(x => x.Name == networkIntefaceName);
+
+                    if (nic != null)
+                    {
+                        foreach (var ip in nic.IpConfigurations)
+                        {
+                            if (!string.IsNullOrEmpty(ip.PrivateIPAddress) && ip.PrivateIPAddressVersion == "IPv6")
+                            {
+                                Ips.Add(ip.PrivateIPAddress);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception(message: $"Something went wrong. Network Interface with the a name of {networkIntefaceName} has not been found.");
+                    }
+                }
+            }
+
+            return Ips;
+        }
+
+        public async Task<List<string>> GetListPrivateIpv4Async(VirtualMachine virtualMachine, string NicName = null)
+        {
+            await CheckLogInAsync();
+
+            List<string> Ips = new List<string>();
+
+            if (NicName == null)
+            {
+                var nicList = virtualMachine.NetworkProfile.NetworkInterfaces;
+                using (var client = new NetworkManagementClient(ClientCredentials))
+                {
+                    client.SubscriptionId = generalOptions.subscriptionId;
+
+                    var NiCList = await client.NetworkInterfaces.ListAllAsync();
+                    var allPublicIps = await client.PublicIPAddresses.ListAllAsync();
+
+                    foreach (var r_nic in nicList)
+                    {
+                        var networkIntefaceName = r_nic.Id.Split('/').Last();
+
+                        var nic = NiCList.FirstOrDefault(x => x.Name == networkIntefaceName);
+
+                        if (nic != null)
+                        {
+                            foreach (var ip in nic.IpConfigurations)
+                            {
+                                if (!string.IsNullOrEmpty(ip.PrivateIPAddress) && ip.PrivateIPAddressVersion == "IPv4")
+                                {
+                                    Ips.Add(ip.PrivateIPAddress);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception(message: $"Something went wrong. Network Interface with the a name of {networkIntefaceName} has not been found.");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                var nicList = virtualMachine.NetworkProfile.NetworkInterfaces.FirstOrDefault(n => n.Id == NicName);
+                using (var client = new NetworkManagementClient(ClientCredentials))
+                {
+                    client.SubscriptionId = generalOptions.subscriptionId;
+
+                    var NiCList = await client.NetworkInterfaces.ListAllAsync();
+                    var allPublicIps = await client.PublicIPAddresses.ListAllAsync();
+
+                    var networkIntefaceName = nicList.Id.Split('/').Last();
+
+                    var nic = NiCList.FirstOrDefault(x => x.Name == networkIntefaceName);
+
+                    if (nic != null)
+                    {
+                        foreach (var ip in nic.IpConfigurations)
+                        {
+                            if (!string.IsNullOrEmpty(ip.PrivateIPAddress) && ip.PrivateIPAddressVersion == "IPv4")
+                            {
+                                Ips.Add(ip.PrivateIPAddress);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception(message: $"Something went wrong. Network Interface with the a name of {networkIntefaceName} has not been found.");
+                    }
+                }
+            }
+
+            return Ips;
+        }
+
+        public async Task<List<string>> GetListPrivateIpv6Async(VirtualMachine virtualMachine, string NicName = null)
+        {
+            await CheckLogInAsync();
+
+            List<string> Ips = new List<string>();
+
+            if (NicName == null)
+            {
+                var nicList = virtualMachine.NetworkProfile.NetworkInterfaces;
+                using (var client = new NetworkManagementClient(ClientCredentials))
+                {
+                    client.SubscriptionId = generalOptions.subscriptionId;
+
+                    var NiCList = await client.NetworkInterfaces.ListAllAsync();
+                    var allPublicIps = await client.PublicIPAddresses.ListAllAsync();
+
+                    foreach (var r_nic in nicList)
+                    {
+                        var networkIntefaceName = r_nic.Id.Split('/').Last();
+
+                        var nic = NiCList.FirstOrDefault(x => x.Name == networkIntefaceName);
+
+                        if (nic != null)
+                        {
+                            foreach (var ip in nic.IpConfigurations)
+                            {
+                                if (!string.IsNullOrEmpty(ip.PrivateIPAddress) && ip.PrivateIPAddressVersion == "IPv6")
+                                {
+                                    Ips.Add(ip.PrivateIPAddress);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception(message: $"Something went wrong. Network Interface with the a name of {networkIntefaceName} has not been found.");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                var nicList = virtualMachine.NetworkProfile.NetworkInterfaces.FirstOrDefault(n => n.Id == NicName);
+                using (var client = new NetworkManagementClient(ClientCredentials))
+                {
+                    client.SubscriptionId = generalOptions.subscriptionId;
+
+                    var NiCList = await client.NetworkInterfaces.ListAllAsync();
+                    var allPublicIps = await client.PublicIPAddresses.ListAllAsync();
+
+                    var networkIntefaceName = nicList.Id.Split('/').Last();
+
+                    var nic = NiCList.FirstOrDefault(x => x.Name == networkIntefaceName);
+
+                    if (nic != null)
+                    {
+                        foreach (var ip in nic.IpConfigurations)
+                        {
+                            if (!string.IsNullOrEmpty(ip.PrivateIPAddress) && ip.PrivateIPAddressVersion == "IPv6")
+                            {
+                                Ips.Add(ip.PrivateIPAddress);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception(message: $"Something went wrong. Network Interface with the a name of {networkIntefaceName} has not been found.");
+                    }
+                }
+            }
+
+            return Ips;
+        }
     }
 }
