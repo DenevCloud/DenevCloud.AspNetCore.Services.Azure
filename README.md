@@ -1,6 +1,6 @@
 # DenevCloud.AspNetCore.Services.Azure
 
-Easy and ready-to-go ASP.NET Core services for Azure
+Easy to use and ready-to-go ASP.NET Core services for Azure
 
 ## Usage
 
