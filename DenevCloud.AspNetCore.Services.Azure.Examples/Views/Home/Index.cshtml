@@ -1,0 +1,19 @@
+﻿@using DenevCloud.AspNetCore.Services.Azure.VirtualMachines
+@using DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
+
+@inject IVMManager vmManager
+@inject INetworkInterfaceManager netManager
+
+@{
+    ViewData["Title"] = "Home Page";
+    var vm = vmManager.GetVirtualMachine("Your_VM_Name");
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>Name: @vm.Name</p>
+    <p>Location: @vm.Location</p>
+    <p>Public Ipv4: @netManager.GetListPublicIpv4(vm).First()</p>
+    <p>Public Ipv6: @netManager.GetListPublicIpv6(vm).First()</p>
+</div>

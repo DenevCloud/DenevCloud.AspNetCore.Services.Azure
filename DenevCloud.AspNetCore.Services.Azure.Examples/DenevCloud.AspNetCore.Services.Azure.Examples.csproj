@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyVersion>1.0.29.7891</AssemblyVersion>
+    <FileVersion>1.0.29.7891</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DenevCloud.AspNetCore.Services.Azure\DenevCloud.AspNetCore.Services.Azure.csproj" />
+  </ItemGroup>
+
+</Project>
