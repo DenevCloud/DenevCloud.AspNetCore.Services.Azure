@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net5.0;netstandard2.0;netstandard2.1;</TargetFrameworks>
@@ -8,7 +8,7 @@
     <Authors>Milen Denev</Authors>
     <Company>Denev Cloud</Company>
     <Description>
-      Simple timer with a trigger event and a handling event
+      Easy and ready-to-go ASP.NET Core services for Azure
       Example - https://github.com/DenevCloud/DenevCloud.Timers/tree/master/DenevCloud.AspNetCore.Services.Azure.Example
     </Description>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
