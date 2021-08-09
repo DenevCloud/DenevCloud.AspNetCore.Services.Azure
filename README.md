@@ -9,7 +9,7 @@ Startup.cs
 ```cs
 public void ConfigureServices(IServiceCollection services)
 {
-    services.AddDenevClouAzure(Configuration, UseVirtualMachines : true);
+    services.AddDenevCloudAzure(Configuration, UseVirtualMachines : true);
 }
 ```
 
