@@ -11,11 +11,15 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
     <p>Name: @vm.Name</p>
     <p>Location: @vm.Location</p>
+
     <p>Public Ipv4: @netManager.GetListPublicIpv4(vm).First()</p>
     <p>Public Ipv6: @netManager.GetListPublicIpv6(vm).First()</p>
+
+    <p>Private Ipv4: @netManager.GetListPrivateIpv4(vm).First()</p>
+    <p>Private Ipv6: @netManager.GetListPrivateIpv6(vm).First()</p>
 
     <div>
         <form class="form-inline" asp-action="SaveSecret" asp-controller="Home" method="post">
@@ -35,4 +39,5 @@
     {
         <p class="text-success">Saved</p>
     }
+
 </div>
