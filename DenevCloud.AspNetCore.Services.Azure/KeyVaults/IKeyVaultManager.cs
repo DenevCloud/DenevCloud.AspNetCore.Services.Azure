@@ -8,5 +8,9 @@ namespace DenevCloud.AspNetCore.Services.Azure.KeyVaults
 {
     public interface IKeyVaultManager
     {
+        string GetSecret(string SecretName);
+        Task<string> GetSecretAsync(string SecretName);
+        bool SetNewSecret(string SecretName, string SecretValue);
+        Task<bool> SetNewSecretAsync(string SecretName, string SecretValue);
     }
 }

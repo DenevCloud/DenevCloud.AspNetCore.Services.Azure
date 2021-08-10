@@ -363,7 +363,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 {
                     client.SubscriptionId = generalOptions.subscriptionId;
                     var NiCList = client.NetworkInterfaces.ListAll();
-                    var allPublicIps = client.PublicIPAddresses.ListAll();
+
                     foreach (var r_nic in nicList)
                     {
                         var networkIntefaceName = r_nic.Id.Split('/').Last();
@@ -395,7 +395,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                     client.SubscriptionId = generalOptions.subscriptionId;
 
                     var NiCList = client.NetworkInterfaces.ListAll();
-                    var allPublicIps = client.PublicIPAddresses.ListAll();
+
 
                     var networkIntefaceName = nicList.Id.Split('/').Last();
 
@@ -434,7 +434,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 {
                     client.SubscriptionId = generalOptions.subscriptionId;
                     var NiCList = client.NetworkInterfaces.ListAll();
-                    var allPublicIps = client.PublicIPAddresses.ListAll();
+
                     foreach (var r_nic in nicList)
                     {
                         var networkIntefaceName = r_nic.Id.Split('/').Last();
@@ -466,7 +466,6 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                     client.SubscriptionId = generalOptions.subscriptionId;
 
                     var NiCList = client.NetworkInterfaces.ListAll();
-                    var allPublicIps = client.PublicIPAddresses.ListAll();
 
                     var networkIntefaceName = nicList.Id.Split('/').Last();
 
@@ -506,7 +505,6 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                     client.SubscriptionId = generalOptions.subscriptionId;
 
                     var NiCList = await client.NetworkInterfaces.ListAllAsync();
-                    var allPublicIps = await client.PublicIPAddresses.ListAllAsync();
 
                     foreach (var r_nic in nicList)
                     {
@@ -539,7 +537,6 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                     client.SubscriptionId = generalOptions.subscriptionId;
 
                     var NiCList = await client.NetworkInterfaces.ListAllAsync();
-                    var allPublicIps = await client.PublicIPAddresses.ListAllAsync();
 
                     var networkIntefaceName = nicList.Id.Split('/').Last();
 
@@ -579,7 +576,6 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                     client.SubscriptionId = generalOptions.subscriptionId;
 
                     var NiCList = await client.NetworkInterfaces.ListAllAsync();
-                    var allPublicIps = await client.PublicIPAddresses.ListAllAsync();
 
                     foreach (var r_nic in nicList)
                     {
@@ -612,7 +608,6 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                     client.SubscriptionId = generalOptions.subscriptionId;
 
                     var NiCList = await client.NetworkInterfaces.ListAllAsync();
-                    var allPublicIps = await client.PublicIPAddresses.ListAllAsync();
 
                     var networkIntefaceName = nicList.Id.Split('/').Last();
 

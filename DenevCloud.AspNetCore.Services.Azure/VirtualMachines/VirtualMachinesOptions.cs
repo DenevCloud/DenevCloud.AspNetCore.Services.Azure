@@ -6,11 +6,11 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines
 {
     public class VirtualMachinesOptions
     {
-        public string subscriptionId { get; set; }
-        public string VMclient_id { get; set; }
-        public string VMclient_sercet { get; set; }
-        public string VMresource { get; set; }
-        public string VMResourceGroup { get; set; }
+        public string subscriptionId { get; internal set; }
+        public string VMclient_id { get; internal set; }
+        public string VMclient_sercet { get; internal set; }
+        public string VMresource { get; internal set; }
+        public string VMResourceGroup { get; internal set; }
 
         public ComputeManagementClient computeManagementClient(ServiceClientCredentials ClientCredentials)
         {

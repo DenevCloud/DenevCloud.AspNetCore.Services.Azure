@@ -1,4 +1,5 @@
 ﻿using DenevCloud.AspNetCore.Services.Azure.Examples.Models;
+using DenevCloud.AspNetCore.Services.Azure.KeyVaults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,10 +13,12 @@ namespace DenevCloud.AspNetCore.Services.Azure.Examples.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IKeyVaultManager keyVaultManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IKeyVaultManager keyVaultManager)
         {
             _logger = logger;
+            this.keyVaultManager = keyVaultManager;
         }
 
         public IActionResult Index()
@@ -32,6 +35,13 @@ namespace DenevCloud.AspNetCore.Services.Azure.Examples.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost("SaveSecret")]
+        public IActionResult SaveSecret(string NewSecret)
+        {
+            keyVaultManager.SetNewSecret("my-new-secret", NewSecret);
+            return RedirectToAction("Index");
         }
     }
 }

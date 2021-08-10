@@ -9,23 +9,31 @@ namespace DenevCloud.AspNetCore.Services.Azure
 {
     public static class ExtensionPoint
     {
-        public static IServiceCollection AddDenevCloudAzure(this IServiceCollection services, IConfiguration Configuration, bool UseDNS = false, bool UseKeyVault = false, bool UseVirtualMachines = false)
+        public static IServiceCollection AddDenevCloudAzure(this IServiceCollection services, IConfiguration Configuration)
         {
             services.AddOptions();
-
             services.Configure<GeneralOptions>(Configuration.GetSection("DenevCloud"));
+            return services;
+        }
 
-            if (UseDNS)
-                services.Configure<AzureDNSOptions>(Configuration.GetSection("DenevCloud"));
-            if(UseKeyVault)
-                services.Configure<KeyVaultOptions>(Configuration.GetSection("DenevCloud"));
-            if (UseVirtualMachines)
-            {
-                services.Configure<VirtualMachinesOptions>(Configuration.GetSection("DenevCloud"));
-                services.AddTransient<IVMManager, VMManager>();
-                services.AddTransient<INetworkInterfaceManager, NetworkInterfaceManager>();
-            }
+        public static IServiceCollection UseVirtualMachines(this IServiceCollection services, IConfiguration Configuration)
+        {
+            services.Configure<VirtualMachinesOptions>(Configuration.GetSection("DenevCloud"));
+            services.AddTransient<IVMManager, VMManager>();
+            services.AddTransient<INetworkInterfaceManager, NetworkInterfaceManager>();
+            return services;
+        }
 
+        public static IServiceCollection UseKeyVaults(this IServiceCollection services, IConfiguration Configuration)
+        {
+            services.Configure<KeyVaultOptions>(Configuration.GetSection("DenevCloud"));
+            services.AddTransient<IKeyVaultManager, KeyVaultManager>();
+            return services;
+        }
+
+        public static IServiceCollection UseAzureDNS(this IServiceCollection services, IConfiguration Configuration)
+        {
+            services.Configure<AzureDNSOptions>(Configuration.GetSection("DenevCloud"));
             return services;
         }
     }

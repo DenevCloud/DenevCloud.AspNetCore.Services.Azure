@@ -16,4 +16,9 @@
     <p>Location: @vm.Location</p>
     <p>Public Ipv4: @netManager.GetListPublicIpv4(vm).First()</p>
     <p>Public Ipv6: @netManager.GetListPublicIpv6(vm).First()</p>
+
+    <form asp-action="SaveSecret" asp-controller="Home" method="post">
+        <input name="NewSecret" value="" />
+        <button type="submit"></button>
+    </form>
 </div>

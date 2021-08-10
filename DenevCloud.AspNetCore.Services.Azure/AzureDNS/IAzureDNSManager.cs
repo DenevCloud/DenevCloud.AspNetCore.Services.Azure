@@ -8,5 +8,6 @@ namespace DenevCloud.AspNetCore.Services.Azure.AzureDNS
 {
     public interface IAzureDNSManager
     {
+
     }
 }

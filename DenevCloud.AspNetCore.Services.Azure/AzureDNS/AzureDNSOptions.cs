@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace DenevCloud.AspNetCore.Services.Azure.AzureDNS
 {
-    internal class AzureDNSOptions
+    public class AzureDNSOptions
     {
-        internal string DNSclientId { get; set; } 
-        internal string DNSsecret { get; set; } 
-        internal string DNSresourceGroupName { get; set; } 
-        internal Zone DNSZoneParams { get; set; } 
-        internal string DNSzoneName { get; set; } 
+        public string DNSclientId { get; internal set; }
+        public string DNSsecret { get; internal set; }
+        public string DNSresourceGroupName { get; internal set; }
+        public Zone DNSZoneParams { get; internal set; }
+        public string DNSzoneName { get; internal set; } 
     }
 }

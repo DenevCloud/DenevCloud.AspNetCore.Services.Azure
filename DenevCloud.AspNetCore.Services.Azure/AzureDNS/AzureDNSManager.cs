@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DenevCloud.AspNetCore.Services.Azure.AzureDNS
 {
-    internal class AzureDNSManager
+    public class AzureDNSManager
     {
+
     }
 }

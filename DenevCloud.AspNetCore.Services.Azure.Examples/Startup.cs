@@ -25,7 +25,11 @@ namespace DenevCloud.AspNetCore.Services.Azure.Examples
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDenevCloudAzure(Configuration, UseVirtualMachines : true);
+
+            services.AddDenevCloudAzure(Configuration)
+                    .UseVirtualMachines(Configuration)
+                    .UseKeyVaults(Configuration)
+                    .UseAzureDNS(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
