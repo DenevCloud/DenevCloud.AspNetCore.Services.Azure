@@ -37,7 +37,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.KeyVaults
             var credential = new ClientSecretCredential(generalOptions.tenant_id, keyVaultOptions.KeyVault_clientId, keyVaultOptions.KeyVault_clientSecret);
             var client = new SecretClient(vaultUri: new Uri($"https://{keyVaultOptions.KeyVault_endpoint}.vault.azure.net/"), credential);
 
-            KeyVaultSecret keyVaultSecret = new KeyVaultSecret(SecretName, SecretValue);
+            KeyVaultSecret keyVaultSecret = new(SecretName, SecretValue);
 
             client.SetSecret(keyVaultSecret);
 
@@ -49,7 +49,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.KeyVaults
             var credential = new ClientSecretCredential(generalOptions.tenant_id, keyVaultOptions.KeyVault_clientId, keyVaultOptions.KeyVault_clientSecret);
             var client = new SecretClient(vaultUri: new Uri($"https://{keyVaultOptions.KeyVault_endpoint}.vault.azure.net/"), credential);
 
-            KeyVaultSecret keyVaultSecret = new KeyVaultSecret(SecretName, SecretValue);
+            KeyVaultSecret keyVaultSecret = new(SecretName, SecretValue);
 
             await client.SetSecretAsync(keyVaultSecret);
 

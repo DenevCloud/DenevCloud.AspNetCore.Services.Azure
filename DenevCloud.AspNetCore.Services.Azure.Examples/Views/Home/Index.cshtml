@@ -17,8 +17,22 @@
     <p>Public Ipv4: @netManager.GetListPublicIpv4(vm).First()</p>
     <p>Public Ipv6: @netManager.GetListPublicIpv6(vm).First()</p>
 
-    <form asp-action="SaveSecret" asp-controller="Home" method="post">
-        <input name="NewSecret" value="" />
-        <button type="submit"></button>
-    </form>
+    <div>
+        <form class="form-inline" asp-action="SaveSecret" asp-controller="Home" method="post">
+            <div class="form-group">
+                <label class="mr-2">Secret Name</label>
+                <input class="form-control" name="SecretName" value="" />
+            </div>
+            <div class="form-group">
+                <label class="mr-2">Secret Value</label>
+                <input class="form-control" name="SecretValue" type="password" value="" />
+            </div>
+            <button class="btn btn-secondary" type="submit">Submit</button>
+        </form>
+    </div>
+
+    @if (ViewBag.SecretSaved == true)
+    {
+        <p class="text-success">Saved</p>
+    }
 </div>

@@ -38,9 +38,10 @@ namespace DenevCloud.AspNetCore.Services.Azure.Examples.Controllers
         }
 
         [HttpPost("SaveSecret")]
-        public IActionResult SaveSecret(string NewSecret)
+        public IActionResult SaveSecret(string SecretName, string SecretValue)
         {
-            keyVaultManager.SetNewSecret("my-new-secret", NewSecret);
+            keyVaultManager.SetNewSecret(SecretName, SecretValue);
+            ViewBag.SecretSaved = true;
             return RedirectToAction("Index");
         }
     }
