@@ -18,6 +18,7 @@ namespace DenevCloud.AspNetCore.Services.Azure
 
         public static IServiceCollection UseVirtualMachines(this IServiceCollection services, IConfiguration Configuration)
         {
+            services.AddOptions();
             services.Configure<VirtualMachinesOptions>(Configuration.GetSection("DenevCloud"));
             services.AddTransient<IVMManager, VMManager>();
             services.AddTransient<INetworkInterfaceManager, NetworkInterfaceManager>();
@@ -26,6 +27,7 @@ namespace DenevCloud.AspNetCore.Services.Azure
 
         public static IServiceCollection UseKeyVaults(this IServiceCollection services, IConfiguration Configuration)
         {
+            services.AddOptions();
             services.Configure<KeyVaultOptions>(Configuration.GetSection("DenevCloud"));
             services.AddTransient<IKeyVaultManager, KeyVaultManager>();
             return services;
@@ -33,6 +35,7 @@ namespace DenevCloud.AspNetCore.Services.Azure
 
         public static IServiceCollection UseAzureDNS(this IServiceCollection services, IConfiguration Configuration)
         {
+            services.AddOptions();
             services.Configure<AzureDNSOptions>(Configuration.GetSection("DenevCloud"));
             return services;
         }

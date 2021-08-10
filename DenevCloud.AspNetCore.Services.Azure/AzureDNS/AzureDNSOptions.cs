@@ -9,10 +9,10 @@ namespace DenevCloud.AspNetCore.Services.Azure.AzureDNS
 {
     public class AzureDNSOptions
     {
-        public string DNSclientId { get; internal set; }
-        public string DNSsecret { get; internal set; }
-        public string DNSresourceGroupName { get; internal set; }
-        public Zone DNSZoneParams { get; internal set; }
-        public string DNSzoneName { get; internal set; } 
+        public string DNSclientId { get; set; }
+        public string DNSsecret { get; set; }
+        public string DNSresourceGroupName { get; set; }
+        public Zone DNSZoneParams { get; set; }
+        public string DNSzoneName { get; set; } 
     }
 }
