@@ -2,7 +2,7 @@
 
 Easy to use and ready-to-go ASP.NET Core services for Azure
 
-## Usage
+## Usage / Sample
 
 Startup.cs
 
@@ -32,6 +32,7 @@ appsettings.json
   }
 ```
 Note: In KeyVault_endpoint you should enter only the endpoint name not the whole link (https://my-endpoint.vault.azure.net/ => KeyVault_endpoint : my-endpoint)
+Note: It's recommended to use different App Registration for each resource
 
 Index.cshtml
 
@@ -49,12 +50,55 @@ Index.cshtml
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
     <p>Name: @vm.Name</p>
     <p>Location: @vm.Location</p>
+
     <p>Public Ipv4: @netManager.GetListPublicIpv4(vm).First()</p>
     <p>Public Ipv6: @netManager.GetListPublicIpv6(vm).First()</p>
+
+    <p>Private Ipv4: @netManager.GetListPrivateIpv4(vm).First()</p>
+    <p>Private Ipv6: @netManager.GetListPrivateIpv6(vm).First()</p>
+
+    <div>
+        <form class="form-inline" asp-action="SaveSecret" asp-controller="Home" method="post">
+            <div class="form-group">
+                <label class="mr-2">Secret Name</label>
+                <input class="form-control" name="SecretName" value="" />
+            </div>
+            <div class="form-group">
+                <label class="mr-2">Secret Value</label>
+                <input class="form-control" name="SecretValue" type="password" value="" />
+            </div>
+            <button class="btn btn-secondary" type="submit">Submit</button>
+        </form>
+    </div>
+
+    @if (ViewBag.SecretSaved == true)
+    {
+        <p class="text-success">Saved</p>
+    }
+
 </div>
+```
+
+HomeController.cs
+
+```cs
+private readonly IKeyVaultManager keyVaultManager;
+
+public HomeController(IKeyVaultManager keyVaultManager)
+{
+    this.keyVaultManager = keyVaultManager;
+}
+
+[HttpPost("SaveSecret")]
+public IActionResult SaveSecret(string SecretName, string SecretValue)
+{
+    keyVaultManager.SetNewSecret(SecretName, SecretValue);
+    ViewBag.SecretSaved = true;
+    return RedirectToAction("Index");
+}
 ```
 
 ## List of available functionality
