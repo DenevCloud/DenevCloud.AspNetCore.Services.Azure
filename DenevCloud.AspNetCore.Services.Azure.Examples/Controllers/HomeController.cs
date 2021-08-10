@@ -2,22 +2,16 @@
 using DenevCloud.AspNetCore.Services.Azure.KeyVaults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DenevCloud.AspNetCore.Services.Azure.Examples.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IKeyVaultManager keyVaultManager;
 
-        public HomeController(ILogger<HomeController> logger, IKeyVaultManager keyVaultManager)
+        public HomeController(IKeyVaultManager keyVaultManager)
         {
-            _logger = logger;
             this.keyVaultManager = keyVaultManager;
         }
 
