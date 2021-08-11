@@ -1,13 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Azure.Management.Dns.Models;
+using Microsoft.Extensions.Options;
 
 namespace DenevCloud.AspNetCore.Services.Azure.AzureDNS
 {
     public class AzureDNSManager
     {
+        private readonly AzureDNSOptions azureDNSOptions;
+        private readonly Zone defaultZone;
+
+        public AzureDNSManager(IOptions<AzureDNSOptions> azureDNSOptions)
+        {
+            this.azureDNSOptions = azureDNSOptions.Value;
+            defaultZone = new Zone(azureDNSOptions.Value.DNS_ZoneLocation);
+        }
+
 
     }
 }
