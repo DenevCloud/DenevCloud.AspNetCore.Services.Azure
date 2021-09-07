@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;netstandard2.0;netstandard2.1;</TargetFrameworks>
-    <version>0.1.2-preview.1</version>
+    <TargetFrameworks>net5.0;netstandard2.1;</TargetFrameworks>
+    <version>0.1.2-preview.2</version>
     <AssemblyVersion>0.1.37.7892</AssemblyVersion>
     <FileVersion>0.1.37.7892</FileVersion>
     <Authors>Milen Denev</Authors>
@@ -27,7 +27,7 @@
   <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.4.1" />
     <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.2.0" />
-    <PackageReference Include="Microsoft.Azure.Management.Compute" Version="48.0.0" />
+    <PackageReference Include="Microsoft.Azure.Management.Compute" Version="49.1.0" />
     <PackageReference Include="Microsoft.Azure.Management.Dns" Version="3.0.1" />
     <PackageReference Include="Microsoft.Azure.Management.Network" Version="20.5.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />

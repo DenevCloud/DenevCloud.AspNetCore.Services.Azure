@@ -15,12 +15,12 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
     public class NetworkInterfaceManager : INetworkInterfaceManager
     {
         private readonly GeneralOptions generalOptions;
-        private readonly VirtualMachinesOptions virtualMachinesOptions;
+        private readonly Options virtualMachinesOptions;
 
         private ServiceClientCredentials ClientCredentials;
         private DateTime LastLogIn;
 
-        public NetworkInterfaceManager(IOptions<GeneralOptions> generalOptions, IOptions<VirtualMachinesOptions> virtualMachinesOptions)
+        public NetworkInterfaceManager(IOptions<GeneralOptions> generalOptions, IOptions<Options> virtualMachinesOptions)
         {
             this.generalOptions = generalOptions.Value;
             this.virtualMachinesOptions = virtualMachinesOptions.Value;
@@ -30,7 +30,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
         {
             if (LastLogIn < DateTime.Now.AddMinutes(-55))
             {
-                ClientCredentials = await ApplicationTokenProvider.LoginSilentAsync(generalOptions.tenant_id, virtualMachinesOptions.VMclient_id, virtualMachinesOptions.VMclient_sercet);
+                ClientCredentials = await ApplicationTokenProvider.LoginSilentAsync(generalOptions.tenant_id, virtualMachinesOptions.VM_client_id, virtualMachinesOptions.VM_client_sercet);
                 LastLogIn = DateTime.Now;
             }
         }
@@ -39,7 +39,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
         {
             if (LastLogIn < DateTime.Now.AddMinutes(-55))
             {
-                ClientCredentials = ApplicationTokenProvider.LoginSilentAsync(generalOptions.tenant_id, virtualMachinesOptions.VMclient_id, virtualMachinesOptions.VMclient_sercet).Result;
+                ClientCredentials = ApplicationTokenProvider.LoginSilentAsync(generalOptions.tenant_id, virtualMachinesOptions.VM_client_id, virtualMachinesOptions.VM_client_sercet).Result;
                 LastLogIn = DateTime.Now;
             }
         }
@@ -54,7 +54,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 var nicList = virtualMachine.NetworkProfile.NetworkInterfaces;
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
                     var NiCList = client.NetworkInterfaces.ListAll();
                     var allPublicIps = client.PublicIPAddresses.ListAll();
                     foreach (var r_nic in nicList)
@@ -87,7 +87,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 var nicList = virtualMachine.NetworkProfile.NetworkInterfaces.FirstOrDefault(n => n.Id == NicName);
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
 
                     var NiCList = client.NetworkInterfaces.ListAll();
                     var allPublicIps = client.PublicIPAddresses.ListAll();
@@ -129,7 +129,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 var nicList = virtualMachine.NetworkProfile.NetworkInterfaces;
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
 
                     var NiCList = await client.NetworkInterfaces.ListAllAsync();
                     var allPublicIps = await client.PublicIPAddresses.ListAllAsync();
@@ -164,7 +164,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 var nicList = virtualMachine.NetworkProfile.NetworkInterfaces.FirstOrDefault(n => n.Id == NicName);
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
 
                     var NiCList = await client.NetworkInterfaces.ListAllAsync();
                     var allPublicIps = await client.PublicIPAddresses.ListAllAsync();
@@ -206,7 +206,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 var nicList = virtualMachine.NetworkProfile.NetworkInterfaces;
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
 
                     var NiCList = client.NetworkInterfaces.ListAll();
                     var allPublicIps = client.PublicIPAddresses.ListAll();
@@ -241,7 +241,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 var nicList = virtualMachine.NetworkProfile.NetworkInterfaces.FirstOrDefault(n => n.Id == NicName);
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
 
                     var NiCList = client.NetworkInterfaces.ListAll();
                     var allPublicIps = client.PublicIPAddresses.ListAll();
@@ -284,7 +284,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 var nicList = virtualMachine.NetworkProfile.NetworkInterfaces;
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
 
                     var NiCList = await client.NetworkInterfaces.ListAllAsync();
                     var allPublicIps = await client.PublicIPAddresses.ListAllAsync();
@@ -319,7 +319,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 var nicList = virtualMachine.NetworkProfile.NetworkInterfaces.FirstOrDefault(n => n.Id == NicName);
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
 
                     var NiCList = await client.NetworkInterfaces.ListAllAsync();
                     var allPublicIps = await client.PublicIPAddresses.ListAllAsync();
@@ -361,7 +361,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
 
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
                     var NiCList = client.NetworkInterfaces.ListAll();
 
                     foreach (var r_nic in nicList)
@@ -392,7 +392,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 var nicList = virtualMachine.NetworkProfile.NetworkInterfaces.FirstOrDefault(n => n.Id == NicName);
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
 
                     var NiCList = client.NetworkInterfaces.ListAll();
 
@@ -432,7 +432,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
 
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
                     var NiCList = client.NetworkInterfaces.ListAll();
 
                     foreach (var r_nic in nicList)
@@ -463,7 +463,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 var nicList = virtualMachine.NetworkProfile.NetworkInterfaces.FirstOrDefault(n => n.Id == NicName);
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
 
                     var NiCList = client.NetworkInterfaces.ListAll();
 
@@ -502,7 +502,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 var nicList = virtualMachine.NetworkProfile.NetworkInterfaces;
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
 
                     var NiCList = await client.NetworkInterfaces.ListAllAsync();
 
@@ -534,7 +534,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 var nicList = virtualMachine.NetworkProfile.NetworkInterfaces.FirstOrDefault(n => n.Id == NicName);
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
 
                     var NiCList = await client.NetworkInterfaces.ListAllAsync();
 
@@ -573,7 +573,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 var nicList = virtualMachine.NetworkProfile.NetworkInterfaces;
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
 
                     var NiCList = await client.NetworkInterfaces.ListAllAsync();
 
@@ -605,7 +605,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines.NetworkInterfaces
                 var nicList = virtualMachine.NetworkProfile.NetworkInterfaces.FirstOrDefault(n => n.Id == NicName);
                 using (var client = new NetworkManagementClient(ClientCredentials))
                 {
-                    client.SubscriptionId = generalOptions.subscriptionId;
+                    client.SubscriptionId = generalOptions.subscription_id;
 
                     var NiCList = await client.NetworkInterfaces.ListAllAsync();
 

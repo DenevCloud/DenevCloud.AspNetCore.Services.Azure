@@ -5,13 +5,13 @@ namespace DenevCloud.AspNetCore.Services.Azure.AzureDNS
 {
     public class AzureDNSManager
     {
-        private readonly AzureDNSOptions azureDNSOptions;
+        private readonly Options azureDNSOptions;
         private readonly Zone defaultZone;
 
-        public AzureDNSManager(IOptions<AzureDNSOptions> azureDNSOptions)
+        public AzureDNSManager(IOptions<Options> azureDNSOptions)
         {
             this.azureDNSOptions = azureDNSOptions.Value;
-            defaultZone = new Zone(azureDNSOptions.Value.DNS_ZoneLocation);
+            defaultZone = new Zone(azureDNSOptions.Value.DNS_zone_location);
         }
 
 

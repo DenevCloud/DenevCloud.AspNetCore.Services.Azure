@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 
 namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S125:Sections of code should not be commented out", Justification = "<Pending>")]
     public interface IVMManager
     {
         VirtualMachine GetVirtualMachine(string VMName);
@@ -17,7 +16,7 @@ namespace DenevCloud.AspNetCore.Services.Azure.VirtualMachines
         Task RestartVirtualMachineAsync(string VMName);
         Task RestartVirtualMachineAsync(string VMName, CancellationToken token);
         void DeallocateVirtualMachine(string VMName);
-        Task DeallocateVirtualMachineAsync(string VMName, CancellationToken token);
+        //Task DeallocateVirtualMachineAsync(string VMName, CancellationToken token);
         Task DeallocateVirtualMachineAsync(string VMName);
         void PowerOffVirtualMachine(string VMName, bool skipShutdown = false);
         Task PowerOffVirtualMachineAsync(string VMName, bool skipShutdown = false);

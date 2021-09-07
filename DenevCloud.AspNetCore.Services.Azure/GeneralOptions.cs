@@ -9,6 +9,6 @@ namespace DenevCloud.AspNetCore.Services.Azure
     public class GeneralOptions
     {
         public string tenant_id { get; set; }
-        public string subscriptionId { get; set; }
+        public string subscription_id { get; set; }
     }
 }
