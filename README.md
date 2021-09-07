@@ -9,10 +9,10 @@ Startup.cs
 ```cs
 public void ConfigureServices(IServiceCollection services)
 {
-    services.AddDenevCloudAzure(Configuration)
-                    .UseVirtualMachines(Configuration)
-                    .UseKeyVaults(Configuration)
-                    .UseAzureDNS(Configuration);
+    services.AddDenevCloudAzure()
+                    .UseVirtualMachines()
+                    .UseKeyVaults()
+                    .UseAzureDNS();
 }
 ```
 
@@ -21,14 +21,19 @@ appsettings.json
 ```json
 "DenevCloud": {
     "tenant_id": "tenant_id",
-    "subscriptionId": "subscriptionId",
-    "VMclient_id": "VMclient_id",
-    "VMclient_sercet": "VMclient_sercet",
-    "VMresource": "https://management.core.windows.net/",
-    "VMResourceGroup": "VMResourceGroup",
-    "KeyVault_clientId": "KeyVault_clientId",
-    "KeyVault_clientSecret": "KeyVault_clientSecret",
-    "KeyVault_endpoint": "KeyVault_endpoint"
+    "subscription_id": "subscriptionId",
+    "VM_client_id": "VMclient_id",
+    "VM_client_sercet": "VMclient_sercet",
+    "VM_resource": "https://management.core.windows.net/",
+    "VM_resource_group": "VMResourceGroup",
+    "keyVault_client_id": "KeyVault_clientId",
+    "keyVault_client_secret": "KeyVault_clientSecret",
+    "keyVault_endpoint": "KeyVault_endpoint",
+    "DNS_client_id": "DNS_clientId",
+    "DNS_secret": "DNS_secret",
+    "DNS_resource_group": "DNS_resourceGroupName",
+    "DNS_zone_location": "DNS_ZoneLocation",
+    "DNS_zone_name": "DNS_zoneName"
   }
 ```
 Note: In KeyVault_endpoint you should enter only the endpoint name not the whole link (https://my-endpoint.vault.azure.net/ => KeyVault_endpoint : my-endpoint)
