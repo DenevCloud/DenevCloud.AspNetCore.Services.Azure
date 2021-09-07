@@ -13,9 +13,9 @@ namespace DenevCloud.AspNetCore.Services.Azure
        
         private static ConfigurationBuilder builder = (ConfigurationBuilder)new ConfigurationBuilder()
             .SetBasePath(Environment.CurrentDirectory)
-            
+
 #if DEBUG
-            .AddJsonFile($"appsettings.Development.json", optional: true)
+            .AddJsonFile($"appsettings.Development.json", optional: true, reloadOnChange: true)
 #else
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 #endif
