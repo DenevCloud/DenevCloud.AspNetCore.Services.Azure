@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net6.0;</TargetFrameworks>
-    <version>0.1.4-preview.1</version>
-    <AssemblyVersion>0.1.37.7892</AssemblyVersion>
-    <FileVersion>0.1.37.7892</FileVersion>
+    <TargetFrameworks>netstandard2.1;net6.0;net8.0;</TargetFrameworks>
+    <version>0.1.5-preview.1</version>
+    <AssemblyVersion>0.1.39.8780</AssemblyVersion>
+    <FileVersion>0.1.39.8780</FileVersion>
     <Authors>Milen Denev</Authors>
     <Company>Denev Cloud</Company>
     <Description>
@@ -25,14 +25,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Identity" Version="1.4.1" />
-    <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.2.0" />
-    <PackageReference Include="Microsoft.Azure.Management.Compute" Version="49.1.0" />
+    <PackageReference Include="Azure.Identity" Version="1.10.4" />
+    <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.5.0" />
+    <PackageReference Include="Microsoft.Azure.Management.Compute" Version="60.0.0" />
     <PackageReference Include="Microsoft.Azure.Management.Dns" Version="3.0.1" />
-    <PackageReference Include="Microsoft.Azure.Management.Network" Version="20.5.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Azure.Management.Network" Version="26.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Microsoft.Rest.ClientRuntime.Azure.Authentication" Version="2.4.1" />
   </ItemGroup>
 
